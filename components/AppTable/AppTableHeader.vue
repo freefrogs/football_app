@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import AppTableHeaderCell from "./AppTableHeaderCell.vue";
 import type { HeaderProps, MainTableRow } from "../../types/table";
 
 const props = defineProps<HeaderProps<MainTableRow>>();

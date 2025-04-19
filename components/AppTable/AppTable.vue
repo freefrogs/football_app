@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { HeaderProps, MainTableRow } from "../../types/table";
+import type { FormattedMatch } from "../../types/index";
 
-const props = defineProps<HeaderProps<MainTableRow>>();
+const props = defineProps<HeaderProps<MainTableRow | FormattedMatch>>();
 </script>
 
 <template>

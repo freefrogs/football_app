@@ -1,4 +1,5 @@
 import type { BasicHeaderCell, MainTableRow } from "../types/table";
+import type { FormattedMatch } from "../types/index";
 
 export const MAIN_HEADERS: BasicHeaderCell<MainTableRow>[] = [
   {
@@ -50,5 +51,23 @@ export const MAIN_HEADERS: BasicHeaderCell<MainTableRow>[] = [
     label: "form",
     isSortable: false,
     field: "recentForm",
+  },
+];
+
+export const MATCH_TABLE_HEADERS: BasicHeaderCell<FormattedMatch>[] = [
+  {
+    label: "Date",
+    isSortable: false,
+    field: "date",
+  },
+  {
+    label: "Match",
+    isSortable: false,
+    field: "id",
+  },
+  {
+    label: "Result",
+    isSortable: false,
+    field: "result",
   },
 ];
