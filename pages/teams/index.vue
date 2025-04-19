@@ -1,10 +1,14 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAppStore } from "../../stores/appStore";
+
+const { favTeamId } = storeToRefs(useAppStore());
+</script>
 
 <template>
-  <div>
-    <h1>HELLOs</h1>
-    <p>
-      <NuxtLink to="/teams/1">team 1</NuxtLink>
-    </p>
+  <div
+    class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-8"
+  >
+    <main-table />
+    <fav-team-box v-if="favTeamId" />
   </div>
 </template>

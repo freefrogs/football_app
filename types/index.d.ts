@@ -1,12 +1,17 @@
-import { MatchResult } from './enums';
+import { MatchResult } from "./enums";
 
-export interface Team {
+export interface BasicTeamData {
   id: number;
   name: string;
+}
+export interface RawTeamData extends BasicTeamData {
   founded: string;
   stadium: string;
   coach: string;
   keyPlayers: string[];
+}
+
+export interface TeamStatsData {
   position: number;
   points: number;
   wins: number;
@@ -17,22 +22,33 @@ export interface Team {
   recentForm: MatchResult[];
 }
 
-export interface Match {
+export interface Team extends RawTeamData, TeamStatsData {}
+
+interface BasicMatch {
   id: number;
   date: string;
-  homeTeamId: number;
-  awayTeamId: number;
   homeScore: number;
   awayScore: number;
 }
 
-export interface FormattedMatch {
-  id: number;
-  date: string;
+export interface Match extends BasicMatch {
+  homeTeamId: number;
+  awayTeamId: number;
+}
+
+export interface FormattedMatch extends BasicMatch {
   homeTeam: string;
   awayTeam: string;
-  homeScore: number;
-  awayScore: number;
   result: MatchResult;
   isHome: boolean;
-} 
+}
+
+interface TeamsResponse {
+  teams: Team[];
+  matches: Match[];
+}
+
+interface RawTeamResponse {
+  teams: RawTeamData[];
+  matches: Match[];
+}
