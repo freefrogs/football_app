@@ -4,6 +4,7 @@ export interface BasicTeamData {
   id: number;
   name: string;
 }
+
 export interface RawTeamData extends BasicTeamData {
   founded: string;
   stadium: string;

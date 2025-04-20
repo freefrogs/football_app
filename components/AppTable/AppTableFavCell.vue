@@ -1,20 +1,16 @@
 <script lang="ts" setup>
-import { useAppStore } from "../../stores/appStore";
+import { useFavActions } from "../../composables/useFavActions";
+import FavStarIcon from "../AppIcons/FavStarIcon.vue";
 
 const props = defineProps<{ id: number; name: string }>();
 
-const store = useAppStore();
-const { updateFavTeamId } = store;
+const { isFav, toggleFavoriteTeam } = useFavActions(props.id);
 
 const currentBtnClasses = computed<string>(() =>
-  props.id === store.favTeamId
+  isFav.value
     ? "bg-yellow-500 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
     : "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
 );
-
-const toggleFavoriteTeam = () => {
-  updateFavTeamId(store.favTeamId === props.id ? undefined : props.id);
-};
 </script>
 
 <template>
@@ -29,7 +25,7 @@ const toggleFavoriteTeam = () => {
         :class="currentBtnClasses"
         title="Set as favorite team"
       >
-        <fav-star-icon />
+        <FavStarIcon />
       </button>
     </div>
   </td>

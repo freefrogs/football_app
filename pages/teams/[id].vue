@@ -1,7 +1,11 @@
 <script lang="ts" setup>
-const { id } = useRoute().params;
+const route = useRoute();
+const id = computed(() => parseInt(route.params.id as string));
 </script>
 
 <template>
-  <h1>team id: {{ id }}</h1>
+  <div class="py-6">
+    <team-details-nav :id="id" />
+    <team-details :id="id" />
+  </div>
 </template>

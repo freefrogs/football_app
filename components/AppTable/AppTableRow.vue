@@ -1,22 +1,24 @@
 <script lang="ts" setup>
-import { useAppStore } from "../../stores/appStore";
+import { useFavActions } from "../../composables/useFavActions";
 
-const props = defineProps<{ id?: number }>();
+const props = defineProps<{ id?: number; isLink?: boolean }>();
 
 const router = useRouter();
 
-const store = useAppStore();
+const { isFav } = useFavActions(props.id);
 
 const handleRedirectClick = () => {
-  if (props.id) router.push(`/teams/${props.id}`);
+  if (props.id && props.isLink) router.push(`/teams/${props.id}`);
 };
 </script>
 
 <template>
   <tr
-    class="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors"
+    class="dark:hover:bg-gray-700 transition-colors"
     :class="{
-      'bg-blue-50 dark:bg-blue-900/20': store.favTeamId === props.id,
+      'bg-blue-50 dark:bg-blue-900/20': isFav,
+      'cursor-pointer hover:bg-gray-100': props.isLink,
+      'hover:bg-gray-50': !props.isLink,
     }"
     @click="handleRedirectClick"
   >

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import FavStarIcon from "../AppIcons/FavStarIcon.vue";
+
 const props = defineProps<{ name?: string; id?: number }>();
 
 const router = useRouter();
@@ -20,7 +22,7 @@ const handleViewDetailsClick = () => {
       <h2
         class="text-lg font-semibold text-blue-800 dark:text-blue-200 flex items-center"
       >
-        <fav-star-icon class="text-yellow-300" :size="8" />
+        <FavStarIcon class="text-yellow-300" :size="8" />
         <span class="ml-3 mr-1">{{ props.name || "Unknown Team" }}</span>
         <span> - Recent Form</span>
       </h2>

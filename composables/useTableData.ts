@@ -1,6 +1,6 @@
 import { useAppStore } from "../stores/appStore";
 import { MatchResult } from "../types/enums";
-import type { MainTableRow } from "../types/table";
+import type { MainTableRow, TeamInfo } from "../types/table";
 import type { FormattedMatch, Match, RawTeamData } from "../types/index";
 
 export const useTableData = () => {
@@ -73,5 +73,21 @@ export const useTableData = () => {
     });
   };
 
-  return { getTeamDataById, getTeamMatches };
+  const getTeamInfoById = (id: number): TeamInfo => {
+    const teamData = getTeamDataById(id);
+    const teamInfo = teams.value?.find((team) => team.id === id);
+    return {
+      id,
+      name: teamData?.name ?? "Unknown Team",
+      founded: teamInfo?.founded ?? "N/A",
+      stadium: teamInfo?.stadium ?? "N/A",
+      coach: teamInfo?.coach ?? "N/A",
+      position: teamData?.position ?? 0,
+      points: teamData?.points ?? 0,
+      goalsFor: teamData?.goalsFor ?? 0,
+      goalsAgainst: teamData?.goalsAgainst ?? 0,
+    };
+  };
+
+  return { getTeamDataById, getTeamMatches, getTeamInfoById };
 };

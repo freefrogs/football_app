@@ -22,7 +22,7 @@ const items = computed<MainTableRow[]>(() => {
     class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-8"
   >
     <app-table :headers="headers">
-      <app-table-row v-for="i in items" :key="i.id" :id="i.id">
+      <app-table-row v-for="i in items" :key="i.id" :id="i.id" :isLink="true">
         <template v-for="f in fields" :key="f">
           <app-table-fav-cell v-if="f === 'name'" :id="i.id" :name="i.name" />
           <app-table-form-cell
